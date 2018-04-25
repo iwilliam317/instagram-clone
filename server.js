@@ -1,11 +1,10 @@
 const express = require('express'),
           bodyParser = require('body-parser'),
-          mongoDb = require('mongodb');
+          mongodb = require('mongodb');
 
 const app = express();
 
 app.set('port', 3000);
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -13,11 +12,13 @@ app.listen(app.get('port'), () => {
   console.log('Server on!');
 })
 
+const db = new mongodb.Db('instagram', new mongo.Server('localhost', 27017, {}), {})
+
+
 app.use((error, req, res, next) => {
   res.status(500).send('Sorry! An error has occurred');
   next();
 })
-
 
 app.get('/', (req, res) => {
   res.send({msg: 'hello, welcome!'})
