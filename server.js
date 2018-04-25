@@ -22,3 +22,8 @@ app.use((error, req, res, next) => {
 app.get('/', (req, res) => {
   res.send({msg: 'hello, welcome!'})
 })
+
+app.post('/api', (req, res) => {
+  let data = req.body;
+  res.send(data);
+})
