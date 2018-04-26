@@ -12,7 +12,7 @@ app.listen(app.get('port'), () => {
   console.log('Server on!');
 })
 
-const db = new mongodb.Db('instagram', new mongo.Server('localhost', 27017, {}), {})
+const db = new mongodb.Db('instagram', new mongodb.Server('localhost', 27017, {}), {})
 
 
 app.use((error, req, res, next) => {
@@ -26,5 +26,20 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req, res) => {
   let data = req.body;
-  res.send(data);
+
+  db.open((error, mongoclient) => {
+    mongoclient.collection('postagens', (error, collection) => {
+      collection.insert(data, (error, result) => {
+        if (error){
+          res.json(error);
+        }
+        else{
+          res.json(result);
+        }
+
+        mongoclient.close();
+      });
+    })
+  })
+  // res.send(data);
 })
