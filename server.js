@@ -2,6 +2,7 @@ const express = require('express'),
           bodyParser = require('body-parser'),
           mongodb = require('mongodb');
 
+
 const app = express();
 
 app.set('port', 3000);
@@ -20,7 +21,7 @@ app.use((error, req, res, next) => {
   next();
 })
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
   res.send({msg: 'hello, welcome!'})
 })
 
