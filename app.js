@@ -1,31 +1,10 @@
-const express = require('express'),
-          bodyParser = require('body-parser'),
-          mongodb = require('mongodb');
-
-
-const app = express();
-
-app.set('port', 3000);
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
-app.listen(app.get('port'), () => {
-  console.log('Server on!');
-})
-
-const db = new mongodb.Db('instagram', new mongodb.Server('localhost', 27017, {}), {})
-
-
-app.use((error, req, res, next) => {
-  res.status(500).send('Sorry! An error has occurred');
-  next();
-})
+const app = require('./config/server');
 
 app.get('/', async(req, res) => {
   res.send({msg: 'hello, welcome!'})
 })
 
-
+const db = app.config.dbConnection();
 // POST
 app.post('/api', (req, res) => {
   let data = req.body;
