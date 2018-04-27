@@ -11,18 +11,11 @@ app.use(bodyParser.json());
 
 // app.use(expressValidator());
 
-app.listen(app.get('port'), () => {
-  console.log('Server on!');
-});
-
-app.use((error, req, res, next) => {
-  res.status(500).send('Sorry! An error has occurred');
-  next();
-})
-
 consign()
   .include('app/routes')
   .then('config/dbConnection.js')
+  .then('app/models')
+  .then('app/controllers')
   .into(app)
 
 module.exports = app;
