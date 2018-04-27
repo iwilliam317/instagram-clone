@@ -34,10 +34,11 @@ app.post('/api', (req, res) => {
     mongoclient.collection('postagens', (error, collection) => {
       collection.insert(data, (error, result) => {
         if (error){
-          res.json(error);
+          res.json({'status': 'Error'});
         }
         else{
-          res.json(result);
+
+          res.json({'status': 'Ok'});
         }
 
         mongoclient.close();
