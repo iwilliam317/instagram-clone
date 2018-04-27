@@ -25,6 +25,8 @@ app.get('/', async(req, res) => {
   res.send({msg: 'hello, welcome!'})
 })
 
+
+// POST
 app.post('/api', (req, res) => {
   let data = req.body;
 
@@ -42,5 +44,30 @@ app.post('/api', (req, res) => {
       });
     })
   })
-  // res.send(data);
 })
+
+app.get('/api', (req, res) => {
+  db.open((error, mongoclient) => {
+    mongoclient.collection('postagens', (error, collection) => {
+      collection.find().toArray((error, result) => {
+        if(error){
+          res.json(error)
+        }
+        else{
+          res.json(result);
+        }
+
+        mongoclient.close();
+      });
+    })
+  })
+})
+
+// SHOW
+// app.get('/api/:id', (req, res) => {
+//   let id = req.params.id;
+//   mongoclient.collection('postagens', (error, collection) => {
+//     collection.find({)
+//   })
+
+// })
