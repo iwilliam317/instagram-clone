@@ -3,7 +3,7 @@ class Api {
     this._connection = connection();
   }
 
-  _get(res){
+  methodGet(res){
       this._connection.open((error, mongoclient) => {
         mongoclient.collection('postagens', (error, collection) => {
                 collection.find().toArray((error, result) => {
@@ -20,7 +20,26 @@ class Api {
       })
 
   }
+
+  methodPost(res, data){
+      this._connection.open((error, mongoclient) => {
+        mongoclient.collection('postagens', (error, collection) => {
+          collection.insert(data, (error, result) => {
+            if (error){
+              res.json({'status': 'Error'});
+            }
+            else{
+
+              res.json({'status': 'Ok'});
+            }
+
+            mongoclient.close();
+          });
+        })
+      })
+  }
 }
+
 
 module.exports = () => {
   return Api;

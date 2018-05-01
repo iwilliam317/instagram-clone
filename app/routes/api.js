@@ -23,22 +23,13 @@ module.exports = (app) => {
     //   })
     // })
 
-    app.get('/api', (req, res) => {
-      app.app.controllers.api._get(app, req, res);
-      // db.open((error, mongoclient) => {
-      //   mongoclient.collection('postagens', (error, collection) => {
-      //     collection.find().toArray((error, result) => {
-      //       if(error){
-      //         res.json(error)
-      //       }
-      //       else{
-      //         res.json(result);
-      //       }
+    app.post('/api', (req, res) => {
+      let data = req.body;
+      app.app.controllers.api.methodPost(app, req, res, data)
+    })
 
-      //       mongoclient.close();
-      //     });
-      //   })
-      // })
+    app.get('/api', (req, res) => {
+      app.app.controllers.api.methodGet(app, req, res);
     })
 
     // SHOW

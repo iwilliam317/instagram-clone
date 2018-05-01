@@ -1,9 +1,14 @@
-module.exports._get = (app, req, res) => {
+
+module.exports.methodGet = (app, req, res) => {
    const connection = app.config.dbConnection;
-   // res.json('sdsds')
+   let api = new app.app.models.api(connection);
 
-  let api = new app.app.models.api(connection)
-  // res.json('asddas')
-   api._get(res);
+   api.methodGet(res);
 
+}
+
+module.exports.methodPost = async (app, req, res, data) => {
+   const connection = app.config.dbConnection; 
+   let api = await new app.app.models.api(connection);
+   await api.methodPost(res, data);
 }
