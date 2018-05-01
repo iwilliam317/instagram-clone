@@ -1,3 +1,5 @@
+const ObjectId = require('mongodb').ObjectId;
+
 class Api {
   constructor(connection){
     this._connection = connection();
@@ -38,6 +40,22 @@ class Api {
         })
       })
   }
+
+  methodShow(res, id){
+    this._connection.open((error, mongoclient) => {
+      mongoclient.collection('postagens', (error, collection) => {
+        collection.find( {_id : ObjectId(id)}).toArray((error, result) => {
+          if(error){
+            res.json(error);
+          }
+          else{
+            res.json(result);
+          }
+        })
+      })
+    })
+  }
+
 }
 
 
