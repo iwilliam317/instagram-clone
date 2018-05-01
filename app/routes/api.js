@@ -1,15 +1,15 @@
-module.exports = (app) => {
+module.exports = (application) => {
 
-    app.post('/api', (req, res) => {
-      app.app.controllers.api.methodPost(app, req, res)
+    application.post('/api', (req, res) => {
+      application.app.controllers.api.methodPost(application, req, res)
     })
 
-    app.get('/api', (req, res) => {
-      app.app.controllers.api.methodGet(app, req, res);
+    application.get('/api', (req, res) => {
+      application.app.controllers.api.methodGet(application, req, res);
     })
 
-    app.get('/api/:id', (req, res) => {
-      app.app.controllers.api.methodShow(app, req, res);
+    application.get('/api/:id', (req, res) => {
+      application.app.controllers.api.methodShow(application, req, res);
     })
 
 }
