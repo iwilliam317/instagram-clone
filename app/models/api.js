@@ -56,6 +56,26 @@ class Api {
     })
   }
 
+  methodPut(req, res, id){
+    this._connection.open((error, mongoclient) => {
+      mongoclient.collection('postagens', (error, collection) => {
+        collection.update( 
+          {_id : ObjectId(id)},
+          { $set : { titulo: req.body.titulo}},
+          {},
+          (error, result) => {
+            if(error){
+              res.json(error);
+            }
+            else{
+              res.json(result);
+            }
+          }
+          )
+        })
+      })
+  }
+
 }
 
 

@@ -12,4 +12,8 @@ module.exports = (application) => {
       application.app.controllers.api.methodShow(application, req, res);
     })
 
+    application.put('/api/:id', (req, res) => {
+      application.app.controllers.api.methodPut(application, req, res);
+    })
+
 }
