@@ -30,7 +30,7 @@ describe('routes', () => {
             expect(data.statusCode).toEqual(200);
         });
 
-        it('returns ', ()=> {
+        it('returns body {"msg":"hello, welcome!"}', ()=> {
             expect(data.body).toEqual('{"msg":"hello, welcome!"}');
         });
 
