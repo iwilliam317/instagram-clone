@@ -8,12 +8,12 @@ class Api {
   methodGet(response){
       this._connection.open((error, mongoclient) => {
         mongoclient.collection('postagens', (error, collection) => {
-                collection.find().toArray((error, responseult) => {
+                collection.find().toArray((error, result) => {
                   if(error){
                     response.json(error)
                   }
                   else{
-                    response.json(responseult);
+                    response.json(result);
                   }
 
                   mongoclient.close();
@@ -26,7 +26,7 @@ class Api {
   methodPost(response, data){
       this._connection.open((error, mongoclient) => {
         mongoclient.collection('postagens', (error, collection) => {
-          collection.insert(data, (error, responseult) => {
+          collection.insert(data, (error, result) => {
             if (error){
               response.json({'status': 'Error'});
             }
@@ -44,12 +44,12 @@ class Api {
   methodShow(response, id){
     this._connection.open((error, mongoclient) => {
       mongoclient.collection('postagens', (error, collection) => {
-        collection.find( {_id : ObjectId(id)}).toArray((error, responseult) => {
+        collection.find( {_id : ObjectId(id)}).toArray((error, result) => {
           if(error){
             response.json(error);
           }
           else{
-            response.json(responseult);
+            response.json(result);
           }
         })
       })
@@ -63,18 +63,19 @@ class Api {
           {_id : ObjectId(id)},
           { $set : { titulo: request.body.titulo}},
           {},
-          (error, responseult) => {
+          (error, result) => {
             if(error){
               response.json(error);
             }
             else{
-              response.json(responseult);
+              response.json(result);
             }
           }
           )
         })
       })
   }
+  
   methodDelete(request, response, id){
       this._connection.open((error, mongoclient) => {
           mongoclient.collection('postagens', (error, collection) => {
