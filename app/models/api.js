@@ -5,15 +5,15 @@ class Api {
     this._connection = connection();
   }
 
-  methodGet(res){
+  methodGet(response){
       this._connection.open((error, mongoclient) => {
         mongoclient.collection('postagens', (error, collection) => {
-                collection.find().toArray((error, result) => {
+                collection.find().toArray((error, responseult) => {
                   if(error){
-                    res.json(error)
+                    response.json(error)
                   }
                   else{
-                    res.json(result);
+                    response.json(responseult);
                   }
 
                   mongoclient.close();
@@ -23,16 +23,16 @@ class Api {
 
   }
 
-  methodPost(res, data){
+  methodPost(response, data){
       this._connection.open((error, mongoclient) => {
         mongoclient.collection('postagens', (error, collection) => {
-          collection.insert(data, (error, result) => {
+          collection.insert(data, (error, responseult) => {
             if (error){
-              res.json({'status': 'Error'});
+              response.json({'status': 'Error'});
             }
             else{
 
-              res.json({'status': 'Ok'});
+              response.json({'status': 'Ok'});
             }
 
             mongoclient.close();
@@ -41,41 +41,57 @@ class Api {
       })
   }
 
-  methodShow(res, id){
+  methodShow(response, id){
     this._connection.open((error, mongoclient) => {
       mongoclient.collection('postagens', (error, collection) => {
-        collection.find( {_id : ObjectId(id)}).toArray((error, result) => {
+        collection.find( {_id : ObjectId(id)}).toArray((error, responseult) => {
           if(error){
-            res.json(error);
+            response.json(error);
           }
           else{
-            res.json(result);
+            response.json(responseult);
           }
         })
       })
     })
   }
 
-  methodPut(req, res, id){
+  methodPut(request, response, id){
     this._connection.open((error, mongoclient) => {
       mongoclient.collection('postagens', (error, collection) => {
         collection.update( 
           {_id : ObjectId(id)},
-          { $set : { titulo: req.body.titulo}},
+          { $set : { titulo: request.body.titulo}},
           {},
-          (error, result) => {
+          (error, responseult) => {
             if(error){
-              res.json(error);
+              response.json(error);
             }
             else{
-              res.json(result);
+              response.json(responseult);
             }
           }
           )
         })
       })
   }
-
+  methodDelete(request, response, id){
+      this._connection.open((error, mongoclient) => {
+          mongoclient.collection('postagens', (error, collection) => {
+              collection.remove(
+              {_id: ObjectId(id)},
+              true,
+              (error, result) => {
+                if(error){
+                  response.json(error);
+                }
+                else{
+                  response.status(200).json(result);
+                }
+              });
+          })
+      })
+  }
 }
 
 
