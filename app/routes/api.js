@@ -1,23 +1,23 @@
 module.exports = (application) => {
 
-    application.post('/api', (req, res) => {
-        application.app.controllers.api.methodPost(application, req, res)
+    application.post('/api', (request, response) => {
+        application.app.controllers.api.methodPost(application, request, response)
     });
 
-    application.get('/api', (req, res) => {
-        application.app.controllers.api.methodGet(application, req, res);
+    application.get('/api', (request, response) => {
+        application.app.controllers.api.methodGet(application, request, response);
     });
 
-    application.get('/api/:id', (req, res) => {
-        application.app.controllers.api.methodShow(application, req, res);
+    application.get('/api/:id', (request, response) => {
+        application.app.controllers.api.methodShow(application, request, response);
     });
 
-    application.put('/api/:id', (req, res) => {
-        application.app.controllers.api.methodPut(application, req, res);
+    application.put('/api/:id', (request, response) => {
+        application.app.controllers.api.methodPut(application, request, response);
     });
 
-    application.delete('/api/:id', (req, res) => {
-        application.app.controllers.api.methodDelete(application, req, res);
+    application.delete('/api/:id', (request, response) => {
+        application.app.controllers.api.methodDelete(application, request, response);
     });
 
 }
