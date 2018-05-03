@@ -34,18 +34,26 @@ describe('routes', () => {
     });
 
     describe('GET /api', () => {
-        it('returns status code 200', () => {
+
+        let data = {};
+
+        beforeAll((done) => {
             request.get('http://localhost:3000/api', (error, response, body) => {
-                expect(response.statusCode).toBe(200);
+                data.statusCode = response.statusCode;
+                data.body = body;
+                done();
             });
         });
 
-        it(`returns body 
-            [{"_id": "5aea4e190824be0bcce654e3", "titulo": "hello", "imagem_url": "hello.jpg"      }]`, () => {
-            request.get('http://localhost:3000/api', (error, response, body) => {
-                expect(body).toBe('[{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]');
-            });
+        it('returns status code 200', () => {           
+                expect(data.statusCode).toBe(200);           
         });
+
+        it(`returns body 
+            [{"_id": "5aea4e190824be0bcce654e3", "titulo": "hello", "imagem_url": "hello.jpg"      }]`, () => {           
+                expect(data.body).toBe('[{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]');
+            });
+
     });
 
 });
