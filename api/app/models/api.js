@@ -49,7 +49,7 @@ class Api {
             response.json(error);
           }
           else{
-            response.json(result);
+            response.status(200).json(result);
           }
         })
       })
