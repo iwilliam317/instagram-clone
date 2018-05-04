@@ -58,7 +58,7 @@ describe('routes', () => {
     });
 
     describe('GET /api:id', () => {
-
+        
         let data = {};
 
         beforeAll((done) => {
@@ -71,7 +71,12 @@ describe('routes', () => {
 
         it('returns status code 200', () => {
             expect(data.statusCode).toBe(200);
-        })
-    })
+        });
+
+        it('returns [{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]' , () =>{
+            expect(data.body).toEqual('[{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]');
+        });
+
+    });
 
 });
