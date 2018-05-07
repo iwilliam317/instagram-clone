@@ -7,10 +7,14 @@ module.exports.methodGet = (application, request, response) => {
 }
 
 module.exports.methodPost = async (application, request, response) => {
-     const connection = application.config.dbConnection; 
-     let api = await new application.app.models.api(connection);
-     let data = request.body;
-     await api.methodPost(response, data);
+
+     response.setHeader("Access-Control-Allow-Origin", "*");
+     response.send(request.body);
+
+     // const connection = application.config.dbConnection; 
+     // let api = await new application.app.models.api(connection);
+     // let data = request.body;
+     // await api.methodPost(response, data);
 }
 
 module.exports.methodShow = async (application, request, response) => {
