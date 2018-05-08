@@ -8,7 +8,7 @@ module.exports.methodGet = (application, request, response) => {
 
 module.exports.methodPost = async (application, request, response) => {
 
-     response.setHeader("Access-Control-Allow-Origin", "*");
+     response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
      response.send(request.body);
 
      // const connection = application.config.dbConnection; 
