@@ -1,6 +1,7 @@
 const express = require('express');
 const  bodyParser = require('body-parser');
 const consign = require('consign');
+const multiparty = require('connect-multiparty');
 // var expressValidator = require('express-validator');
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 app.set('port', 3000);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(multiparty());
 
 // app.use(expressValidator());
 
