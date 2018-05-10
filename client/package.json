@@ -2,17 +2,23 @@
   "name": "multiroom_chat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "NODE_ENV=TEST mocha --timeout 2000"
   },
   "author": "Jorge",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "chai": "^4.1.2",
     "consign": "^0.1.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
-    "express-validator": "^2.20.8"
+    "express-validator": "^2.20.8",
+    "mocha": "^5.1.1"
+  },
+  "devDependencies": {
+    "chai-http": "^4.0.0"
   }
 }
