@@ -7,4 +7,8 @@ module.exports = function(application){
 		application.app.controllers.home.home(application, req, res);
 	});
 
+    application.get('/hello_world', (req, res) => {
+        res.send({ msg: 'hello world' });
+    }); 
+
 }
