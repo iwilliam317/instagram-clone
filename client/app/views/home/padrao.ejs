@@ -31,7 +31,7 @@
 				$('#btn-publicar').click(function(){
 					let formData = new FormData();
 
-					let arquivo = $('#arquivo').val();
+					let arquivo = $("#arquivo")[0].files[0];
 					let titulo = $('#titulo').val();
 
 					formData.append('arquivo', arquivo);

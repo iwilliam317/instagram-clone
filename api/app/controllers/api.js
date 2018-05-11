@@ -1,4 +1,6 @@
 
+const fs = require('fs');
+
 module.exports.methodGet = (application, request, response) => {
      const connection = application.config.dbConnection;
      let api = new application.app.models.api(connection);
@@ -9,7 +11,18 @@ module.exports.methodGet = (application, request, response) => {
 module.exports.methodPost = async (application, request, response) => {
 
      response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+     console.log(request.files);
      response.send(request.body);
+
+     const originPath = request.files.arquivo.path;
+     const destinationPath = `./uploads/${request.files.arquivo.originalFilename}`;
+
+     console.log(originPath);
+     console.log(destinationPath);
+     fs.rename(originPath, destinationPath, error => {
+        if (error)
+            return response.status(500).json({ error: error })
+     })
 
      // const connection = application.config.dbConnection; 
      // let api = await new application.app.models.api(connection);
