@@ -29,4 +29,16 @@ describe('client', () => {
     });
   });
 
+  describe('/home', () => {
+    it('returns status code 200', () => {
+      chai.request(app).get('/home')
+        .end((error, response) => {
+          console.log(response)
+          expect(response).to.have.status(200);
+          expect(response.type).to.be.equal('text/html');
+        });
+
+    });
+  });
+
 });
