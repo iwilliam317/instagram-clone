@@ -32,12 +32,23 @@ describe('client', () => {
   describe('/home', () => {
     it('returns status code 200', () => {
       chai.request(app).get('/home')
-        .end((error, response) => {
-          console.log(response)
+        .end((error, response) => {          
           expect(response).to.have.status(200);
           expect(response.type).to.be.equal('text/html');
+          expect(response.ok).to.be.true;
         });
 
+    });
+  });
+
+  describe('wrong route', () => {
+    it('returns status code 404', () => {
+      chai.request(app).get('/test')
+        .end((error, response) => {
+          console.log(response)
+          expect(response.status).to.equal(404);
+          expect(response.error.text).to.be.equal('Parece haver um erro na sua solicitação, a página não foi encontrada!');
+        });
     });
   });
 

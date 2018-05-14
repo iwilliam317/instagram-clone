@@ -17,6 +17,7 @@ describe('routes', () => {
         
         beforeAll((done) => {
             request.get('http://localhost:3000/', (error, response, body) => {
+                // console.log(response);
                 data.statusCode = response.statusCode;
                 data.body = body;
                 done();
@@ -36,7 +37,7 @@ describe('routes', () => {
     describe('GET /api', () => {
 
         let data = {};
-
+        
         beforeAll((done) => {
             request.get('http://localhost:3000/api', (error, response, body) => {
                 data.statusCode = response.statusCode;
@@ -53,7 +54,8 @@ describe('routes', () => {
             [{"_id": "5aea4e190824be0bcce654e3", "titulo": "hello", 
             "imagem_url": "hello.jpg"
             }]`, () => {           
-                expect(data.body).toBe('[{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]');
+                console.log(x)
+                expect(data.body).toEqual('[{"_id":"5aea4e190824be0bcce654e3","titulo":"hello","imagem_url":"hello.jpg"}]');
             });
     });
 
