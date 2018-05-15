@@ -28,6 +28,7 @@ module.exports.methodPost = async (application, request, response) => {
 
      const connection = application.config.dbConnection; 
      let api = await new application.app.models.api(connection);
+     
      let data = {
         titulo: request.body.titulo,
         url_imagem: uniqueFilename
