@@ -28,7 +28,7 @@ describe('client', () => {
         });
     });
 
-    it('', (done) => {
+    it('returns data passed through post', (done) => {
       chai.request(app)
         .post('/hello_world')
         .send({ name: 'william', github: 'william317' })
