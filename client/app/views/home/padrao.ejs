@@ -23,10 +23,10 @@
 
 					xhr.onload = () =>{
 						if (xhr.status === 200){
-							const postagens = $.parseJSON(xhr.responseText)
+							const postagens = $.parseJSON(xhr.responseText);
 
 							for(let post in postagens){
-								$('#container_timeline').append(postagens[post]['titulo'])
+								$('#container_timeline').append(`<div class="publicacao"><span class="titulo">${postagens[post]['titulo']}</span></div>`)
 								console.log(postagens[post]['titulo'])
 							}
 						}
