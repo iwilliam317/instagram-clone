@@ -2,6 +2,8 @@
 const fs = require('fs');
 
 module.exports.methodGet = (application, request, response) => {
+     response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+     
      const connection = application.config.dbConnection;
      let api = new application.app.models.api(connection);
      api.methodGet(response);
@@ -24,11 +26,11 @@ module.exports.methodPost = async (application, request, response) => {
      fs.rename(originPath, destinationPath, error => {
         if (error)
             return response.status(500).json({ error: error })
-     })
+     });
 
      const connection = application.config.dbConnection; 
      let api = await new application.app.models.api(connection);
-     
+
      let data = {
         titulo: request.body.titulo,
         url_imagem: uniqueFilename
