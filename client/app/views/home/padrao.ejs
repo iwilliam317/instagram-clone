@@ -23,8 +23,12 @@
 
 					xhr.onload = () =>{
 						if (xhr.status === 200){
-							const data = $.parseJSON(xhr.responseText)
-							alert(data);
+							const postagens = $.parseJSON(xhr.responseText)
+
+							for(let post in postagens){
+								$('#container_timeline').append(postagens[post]['titulo'])
+								console.log(postagens[post]['titulo'])
+							}
 						}
 					}
 					xhr.send()
