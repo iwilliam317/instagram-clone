@@ -7,8 +7,13 @@ module.exports = function(application){
 		application.app.controllers.home.home(application, req, res);
 	});
 
+    // route for testing only
     application.get('/hello_world', (req, res) => {
         res.send({ msg: 'hello world' });
     }); 
 
+    // route for testing only
+    application.post('/hello_world', (req, res) => {
+      res.send({ data: req.body })
+    });
 }

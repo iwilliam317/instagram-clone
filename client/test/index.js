@@ -27,27 +27,43 @@ describe('client', () => {
           done();
         });
     });
+
+    it('', (done) => {
+      chai.request(app)
+        .post('/hello_world')
+        .send({ name: 'william', github: 'william317' })
+        .type('form')
+        .end((error, response) => {
+          console.log(response)
+          expect(response.body.data.name).to.be.equal('william');
+          expect(response.body.data.github).to.be.equal('william317');
+          expect(response.ok).to.be.true;
+          done();
+        });
+    });
   });
 
   describe('/home', () => {
-    it('returns status code 200', () => {
+    it('returns status code 200', (done) => {
       chai.request(app).get('/home')
         .end((error, response) => {          
           expect(response).to.have.status(200);
           expect(response.type).to.be.equal('text/html');
           expect(response.ok).to.be.true;
+          done();
         });
 
     });
   });
 
   describe('wrong route', () => {
-    it('returns status code 404', () => {
+    it('returns status code 404', (done) => {
       chai.request(app).get('/test')
         .end((error, response) => {
-          console.log(response)
+          // console.log(response)
           expect(response.status).to.equal(404);
           expect(response.error.text).to.be.equal('Parece haver um erro na sua solicitação, a página não foi encontrada!');
+          done();
         });
     });
   });
