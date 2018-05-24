@@ -60,3 +60,15 @@ module.exports.methodDelete = (application, request, response) => {
     let id = request.params.id;
     api.methodDelete(request, response, id);
 }
+
+module.exports.getImage = (application, request, response) => {
+    const image = request.params.image;
+
+    fs.readFile('./uploads', (error, content) => {
+        if (error)
+            return response.status(400).json(error);
+
+        response.writeHead(200, {'content-type' : 'image/jpg'});
+        response.end(content);
+    });
+}

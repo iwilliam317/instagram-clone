@@ -20,4 +20,7 @@ module.exports = (application) => {
         application.app.controllers.api.methodDelete(application, request, response);
     });
 
+    application.get('/uploads/:image', (request, response) => {
+        application.app.controllers.api.getImage(application, request, response);
+    });
 }
