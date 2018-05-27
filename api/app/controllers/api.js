@@ -63,8 +63,8 @@ module.exports.methodDelete = (application, request, response) => {
 
 module.exports.getImage = (application, request, response) => {
     const image = request.params.image;
-
-    fs.readFile('./uploads', (error, content) => {
+    // response.send('../../uploads/'+image)
+    fs.readFile('./uploads/'+image, (error, content) => {
         if (error)
             return response.status(400).json(error);
 
