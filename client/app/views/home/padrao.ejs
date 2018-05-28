@@ -32,14 +32,14 @@
 										<img src="http://localhost:3000/uploads/${postagens[post]['url_imagem']}" class="image" />
 										<div class="comentar">
 										<input type="text" class="form-control input_comentario" placeholder="Adicione um comentário" />
-										<button class="btn btn-default btn-postagem" type="button">Comentar</button>
+										<button class="btn btn-default btn-postagem" type="button" value="id_${postagens[post]['_id']}">Comentar</button>
 										</div>
 									</div>`)
 								// console.log(postagens[post]['titulo'])
 							}
 
-							$('.btn-postagem').click(() =>{
-								alert('test');
+							$('.btn-postagem').click(function(){
+								alert(this.value);
 							});
 						}
 					}
