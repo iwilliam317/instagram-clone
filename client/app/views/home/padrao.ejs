@@ -40,8 +40,12 @@
 
 							$('.btn-postagem').click(function(){
 								const id = this.value;
-								const post_id = $(`#postagem_${id}`)
-								alert(post_id);
+								const post_id = `postagem_${id}`
+								const comment = $(`#${post_id}`).val();
+								// alert(comment);
+								const xhr = new XMLHttpRequest();
+								xhr.open('PUT', `http://localhost:3000/api/${id}`);
+								xhr.send();
 							});
 						}
 					}
