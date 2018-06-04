@@ -11,6 +11,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(multiparty());
 
+
+app.use((request, response, next) => {
+  response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+  next();
+});
+
 // app.use(expressValidator());
 
 consign()
