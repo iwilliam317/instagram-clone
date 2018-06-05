@@ -46,11 +46,11 @@ module.exports.methodShow = async (application, request, response) => {
 }
 
 module.exports.methodPut = async (application, request, response) => {
-    response.send(request.body.comment);
-    // const connection = application.config.dbConnection; 
-    // let api = await new application.app.models.api(connection);
-    // let id = request.params.id;
-    // await api.methodPut(request, response, id);
+    // response.send(request.body.comment);
+    const connection = application.config.dbConnection; 
+    let api = await new application.app.models.api(connection);
+    let id = request.params.id;
+    await api.methodPut(request, response, id);
 }
 
 module.exports.methodDelete = (application, request, response) => {

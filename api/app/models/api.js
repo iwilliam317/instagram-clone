@@ -61,7 +61,12 @@ class Api {
       mongoclient.collection('postagens', (error, collection) => {
         collection.update( 
           {_id : ObjectId(id)},
-          { $set : { titulo: request.body.titulo}},
+          { $push : { comentarios:  { 
+                                                      id_comentario: new ObjectId(),
+                                                      comentario: request.body.comment
+                                                    }
+                          }
+            },
           {},
           (error, result) => {
             if(error){
