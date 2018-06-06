@@ -31,11 +31,19 @@
 								$('#container_timeline').append(`
 									<div class="publicacao">
 										<span class="titulo">${postagens[post]['titulo']}</span>
+
 										<img src="http://localhost:3000/uploads/${postagens[post]['url_imagem']}" class="image" />
-										<div class="comentarios" id="comentario_${postagens[post]['_id']}">asdasd</div>
+
+										<div class="comentarios" id="comentario_${postagens[post]['_id']}">
+										</div>
+
 										<div class="comentar">
-										<input type="text" class="form-control input_comentario" placeholder="Adicione um comentário" id="postagem_${postagens[post]['_id']}" />
-										<button class="btn btn-default btn-postagem" type="button" value="${postagens[post]['_id']}">Comentar</button>
+
+											<input type="text" class="form-control input_comentario" placeholder="Adicione um comentário" id="postagem_${postagens[post]['_id']}" />
+											
+											<button class="btn btn-default btn-postagem" type="button" value="${postagens[post]['_id']}">	Comentar
+											</button>
+
 										</div>
 									</div>`)
 								// console.log(postagens[post]['titulo'])
@@ -46,7 +54,7 @@
 									comentarios.forEach(comentario => {
 										$(`#comentario_${postagens[post]['_id']}`).append(`
 											<div class="txt_comentario">
-											${comentario.comentario}
+												${comentario.comentario}
 											</div>
 											`)
 									});
