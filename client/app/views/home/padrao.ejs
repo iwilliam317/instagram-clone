@@ -25,6 +25,8 @@
 						if (xhr.status === 200){
 							const postagens = $.parseJSON(xhr.responseText);
 
+
+							//CARREGAR POSTAGENS
 							for(let post in postagens){
 								$('#container_timeline').append(`
 									<div class="publicacao">
@@ -38,7 +40,7 @@
 									</div>`)
 								// console.log(postagens[post]['titulo'])
 					
-								//carregar comentários
+								//CARREGAR COMENTÁRIOS
 								if (postagens[post]['comentarios'] != undefined){
 									let comentarios = postagens[post]['comentarios'] ;
 									comentarios.forEach(comentario => {
@@ -53,7 +55,7 @@
 
 
 
-							//comentar
+							//POSTAR COMENTÁRIO
 							$('.btn-postagem').click(function(){
 								const id = this.value;
 								const post_id = `postagem_${id}`
