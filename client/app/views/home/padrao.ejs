@@ -55,6 +55,7 @@
 										$(`#comentario_${postagens[post]['_id']}`).append(`
 											<div class="txt_comentario">
 												${comentario.comentario}
+												<button class="btn btn-default" type="button" value="${comentario.id_comentario}">Remover</button>
 											</div>
 											`)
 									});
