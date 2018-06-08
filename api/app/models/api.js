@@ -84,9 +84,10 @@ class Api {
   methodDelete(request, response, id){
       this._connection.open((error, mongoclient) => {
           mongoclient.collection('postagens', (error, collection) => {
-              collection.remove(
-              {_id: ObjectId(id)},
-              true,
+              collection.update(
+              {},
+              { $pull: { comentarios: { id_comentario: ObjectId(id) }} },
+              { multi: true},
               (error, result) => {
                 if(error){
                   response.json(error);

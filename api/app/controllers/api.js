@@ -54,11 +54,11 @@ module.exports.methodPut = async (application, request, response) => {
 }
 
 module.exports.methodDelete = (application, request, response) => {
-   response.send(request.params.id)
-    // const connection = application.config.dbConnection;
-    // let api = new application.app.models.api(connection);
-    // let id = request.params.id;
-    // api.methodDelete(request, response, id);
+   // response.send(request.params.id)
+    const connection = application.config.dbConnection;
+    let api = new application.app.models.api(connection);
+    let id = request.params.id;
+    api.methodDelete(request, response, id);
 }
 
 module.exports.getImage = (application, request, response) => {
